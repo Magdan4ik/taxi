@@ -1,0 +1,215 @@
+@import "vars"
+
+@media only screen and (min-width : 1920px)
+	.about
+		background-position-x: right
+/*==========  Desktop First  ==========*/
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+	body
+		box-shadow: none
+	h3
+		font-size: 35px
+	h5
+		font-size: 18px
+	.overlay
+		position: fixed
+		left: 0
+		right: 0
+		top: 0
+		bottom: 0
+		z-index: 2
+		background: rgba(0, 0, 0, 0.5)
+	.main
+		min-height: calc(100vh - 100px)
+		padding-top: 50px
+		margin-bottom: 35px
+
+	.btn
+		min-width: 150px
+		font-size: 20px
+
+	/*==============================================================
+						INDEX PAGE + HEADER + FOOTER START
+	/*============================================================= */
+	.header
+		background: #fff
+		position: fixed
+		left: 0
+		right: 0
+		top: 0
+		width: 100%
+		z-index: 3
+		box-shadow: 0 0 3px 3px rgba(200, 0, 0, 0.2)
+		&__inner
+			justify-content: space-between
+			padding: 5px 0
+		&__burger
+			display: block
+		&__logo
+			margin: 0
+			height: 40px
+		&__nav
+			position: fixed
+			background: var(--main-color)
+			left: 0
+			top: 50px
+			width: 300px
+			height: 100%
+			z-index: 3
+			will-change: transform
+			transition: 0.2s
+			transform: translateX(-100%)
+			ul
+				flex-direction: column
+				max-height: calc(100vh - 50px)
+				overflow-y: auto
+				li
+					margin: 0
+					border-bottom: 1px dashed rgba(0,0,0,0.2)
+					&:last-child
+						border-bottom: none
+					a
+						&:hover
+							span
+								transform: none
+								color: #fff
+						span
+							display: block
+							padding: 10px
+							color: #fff
+							&::before
+								display: none
+					&.current
+						a
+							span
+								font-weight: 500
+								color: #fff
+			&.active
+				transform: translateX(0)
+	.heading
+		margin-bottom: 100px
+		&::after
+			background-image: url('../img/heading-mob.png')
+			top: 50px
+			height: 570px
+		&__inner
+			height: 570px
+			align-items: flex-end
+		&__btn
+			margin: 0 0 30px
+			span
+				padding: 15px 37px
+	.comfort
+		height: 430px
+		&::after
+			background-image: url('../img/comfort-mob.png')
+			background-position: center bottom
+			height: 100%
+	.proff
+		margin-bottom: 50px
+		&__row
+			text-align: center
+		&__trip
+			&-number
+				font-size: 85px
+			&-text
+				font-size: 18px
+		&__svg
+			&-desctop
+				display: none
+			&-mobile
+				display: block
+	.bonus
+		height: auto
+		min-height: 250px
+		&::after
+			background-image: url('../img/road-mob.png')
+			background-position: 50% 100%
+		&__inner
+			justify-content: flex-start
+	.footer
+		&__logo
+			height: 47px
+		&__copy
+			font-size: 9px
+			font-weight: 700
+			padding-left: 22px
+		&__nav
+			ul
+				flex-wrap: wrap
+				li
+					margin: 5px 3px
+					a
+						span
+							font-size: 14px
+
+	/*==============================================================
+						PAGE CONTACTS START
+	/*============================================================= */
+	.contacts
+		padding-top: 40px
+		padding-bottom: 80px
+		&::after
+			background: url(../img/contacts-mob.png) no-repeat 100% 0%
+			top: 90px
+			bottom: initial
+			height: 455px
+		&__list
+			font-size: 18px
+		&__ltitle
+			font-weight: 500
+
+	/*==============================================================
+						PAGE ORDER START
+	/*============================================================= */
+	.order
+		&__inner
+			padding-top: 30px
+		&__form
+			form
+				grid-row-gap: 20px
+				.btn
+					padding: 9px 16px
+		&__fields
+			legend
+				font-size: 24px
+				margin-bottom: 10px
+		&__inputs
+			grid-template-columns: 1fr 1fr
+			label
+				&:first-child
+					grid-column: 1/-1
+				span
+					font-size: 12px
+					font-weight: 600
+			textarea
+				height: 100px
+		&__input
+			&-note
+				order: 2
+				grid-column: 1/-1
+			&-wide
+
+	.about
+		min-height: initial
+		&__inner
+			padding-top: 50px
+			padding-bottom: 50px
+		&__article
+			max-width: 750px
+			margin: 0 auto
+			&-header
+				margin-bottom: 30px
+				figure
+					margin-bottom: 10px
+					img
+						max-width: 180px
+				p
+					font-size: 13px
+
+			&-text
+				font-size: 12px
+				ul
+					margin: 15px 0

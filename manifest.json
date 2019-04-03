@@ -1,0 +1,21 @@
+{
+  "name": "Имя проекта",
+  "short_name": "Имя проекта",
+  "description": "Описание проекта",
+  "icons": [
+    {
+      "src": "/assets/templates/проект/img/favicon/favicon.ico",
+      "sizes": "16x16 32x32 64x64 128x128"
+    }, {
+      "src": "/assets/templates/проект/img/favicon/apple-touch-icon.png",
+      "sizes": "256x256 512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#403e3e",
+  "background_color": "#fff",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any"
+}

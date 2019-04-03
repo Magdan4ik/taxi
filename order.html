@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<title>TAXI</title>
+		<!-- <base href="/"> -->
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="theme-color" content="#000">
+		<meta name="msapplication-navbutton-color" content="#000">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#000">
+		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/main.css">
+		<script src="js/common.js" defer></script>
+	</head>
+
+	<body>
+		<header class="header">
+			<div class="container">
+				<div class="header__inner">
+					<button type="button" class="header__burger"><div class="header__burger-inner"></div></button>
+					<a class="header__logo" href="contacts.html"><img src="img/logo.svg" alt="Style Taxi"></a>
+					<nav class="header__nav">
+						<ul>
+							<li><a href="index.html"><span data-hover="Главная">Главная</span></a></li>
+							<li class="current"><a href="order.html"><span data-hover="Заказать такси">Заказать такси</span></a></li>
+							<li><a href="about.html"><span data-hover="О нас">О нас</span></a></li>
+							<li><a href="contacts.html"><span data-hover="Контакты">Контакты</span></a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<main class="main">
+			<section class="order">
+				<div class="container">
+					<div class="order__inner">
+						<div class="order__form">
+							<form action="#">
+								<fieldset class="order__fields order__fields--from">
+									<legend>Откуда ехать:</legend>
+									<div class="order__inputs">
+										<label>
+											<span>Адрес <sup>*</sup></span>
+											<input type="text" name="from-adress" required>
+										</label>
+										<label>
+											<span>Дом <sup>*</sup></span>
+											<input type="text" name="from-house" required>
+										</label>
+										<label>
+											<span>Квартира</span>
+											<input type="text" name="from-apartment">
+										</label>
+									</div>
+								</fieldset>
+								<fieldset class="order__fields order__fields--to">
+									<legend>Куда ехать:</legend>
+									<div class="order__inputs">
+										<label>
+											<span>Адрес <sup>*</sup></span>
+											<input type="text" name="to-adress" required>
+										</label>
+										<label>
+											<span>Дом <sup>*</sup></span>
+											<input type="text" name="to-house" required>
+										</label>
+										<label>
+											<span>Квартира</span>
+											<input type="text" name="to-apartment">
+										</label>
+										<label class="order__input-note">
+											<span>Примечения</span>
+											<textarea name="to-note"></textarea>
+										</label>
+										<label class="order__input-wide">
+											<span>Имя <sup>*</sup></span>
+											<input type="text" name="to-name" required>
+										</label>
+										<label class="order__input-wide">
+											<span>Телефон <sup>*</sup></span>
+											<input type="text" name="to-tel" required>
+										</label>
+									</div>
+								</fieldset>
+								<button class="btn btn--primary" type="submit">Заказать такси</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__inner">
+					<a class="footer__logo" href="contacts.html"><img src="img/logo.png" alt="Style Taxi"></a>
+					<nav class="footer__nav">
+						<ul>
+							<li><a href="contacts.html"><span data-hover="Главная">Главная</span></a></li>
+							<li class="current"><a href="#"><span data-hover="Заказать такси">Заказать такси</span></a></li>
+							<li><a href="#"><span data-hover="О нас">О нас</span></a></li>
+							<li><a href="contacts.html"><span data-hover="Контакты">Контакты</span></a></li>
+						</ul>
+					</nav>
+				</div>
+				<p class="footer__copy">&copy;StyleTaxi</p>
+			</div>
+		</footer>
+	</body>
+</html>

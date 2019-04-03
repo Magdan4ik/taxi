@@ -1,0 +1,624 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('/fonts/Gilroy-Thin.woff') format('woff')
+	font-weight: 100
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('/fonts/Gilroy-Light.woff') format('woff')
+	font-weight: 300
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('/fonts/Gilroy-Regular.woff') format('woff')
+	font-weight: 400
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('/fonts/Gilroy-Bold.woff') format('woff')
+	font-weight: 500
+	font-style: normal
+
+@font-face
+	font-family: 'Gilroy'
+	src: url('/fonts/Gilroy-ExtraBold.woff') format('woff')
+	font-weight: 700
+	font-style: normal
+
+\:root
+	--main-color: #E73834
+	--main-font: 'Gilroy', sans-serif
+
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+	&:before, &:after
+		box-sizing: border-box
+
+\:focus
+	outline: none
+
+\::placeholder
+	opacity: 1
+	color: #000
+	transition: 0.4s transform, 0.4s opacity
+
+\::-moz-selection
+	background: var(--main-color)
+	color: #fff
+
+\::selection
+	background: var(--main-color)
+	color: #fff
+
+\::-webkit-scrollbar
+	width: 6px
+	height: 6px
+
+\::-webkit-scrollbar-thumb
+	background-color: var(--main-color)
+	border-radius: 3px
+
+body
+	font-size: 16px
+	height: 100%
+	min-width: 320px
+	max-width: 1920px
+	margin: 0 auto
+	position: relative
+	line-height: 1.65
+	color: #000
+	font-family: var(--main-font)
+	font-weight: 300
+	box-shadow: 0 0 3px 3px rgba(200,0,0,0.2)
+	overflow-x: hidden
+	transform-origin: top
+
+a, button
+	background: transparent
+	text-decoration: none
+	cursor: pointer
+	outline: none
+	color: #000
+	border: none
+	transition: .2s color
+a
+	&:hover
+		color: var(--main-color)
+img
+	max-width: 100%
+	height: auto
+
+strong, b
+	color: #000
+	font-weight: 500
+
+h3
+	font-size: 75px
+	font-weight: 700
+	line-height: 1
+h5
+	font-size: 36px
+	font-weight: 300
+	line-height: 1
+
+input,
+textarea,
+select
+	display: block
+	width: 100%
+	padding: 12px 10px
+	font-size: 18px
+	font-family: var(--main-font)
+	font-weight: 400
+	line-height: normal
+	color: #000
+	border: solid 3px #000
+	border-radius: 5px
+	transition: 0.3s border
+	&:focus
+		border-color: #E73834
+	&.success
+		border-color: green
+	&.error
+		border-color: red
+textarea
+	resize: none
+	height: 142px
+	max-height: 142px
+
+input[type='radio'],
+input[type='checkbox'],
+select
+	-webkit-appearance: none
+	-moz-appearance: none
+	appearance: none
+	border-radius: 0
+	cursor: pointer
+
+select
+	background: url('../img/arrow-down.svg') no-repeat right 10px center/15px
+	padding-right: 30px
+
+input
+	&:focus::placeholder
+		transform: translateX(9px)
+		opacity: 0
+
+	&[type='checkbox'],
+	&[type='radio']
+		background: #fff
+		position: relative
+		width: 16px
+		height: 16px
+		border: none
+		padding: 0
+		cursor: pointer
+		width: 18px
+		height: 18px
+		border: 2px solid #000
+		transition: 0.2s
+
+	&[type='checkbox']
+		border-radius: 2px
+		&::before
+			content: ""
+			position: absolute
+			top: 0
+			left: 4px
+			width: 6px
+			height: 12px
+			border: 2px solid #fff
+			border-top-width: 0
+			border-left-width: 0
+			transform: rotate(45deg) scale(0)
+			transition: 0.2s
+		&:checked
+			background-color: var(--main-color)
+			border-color: var(--main-color)
+			&::before
+				transform: rotate(45deg) scale(1)
+
+	&[type='radio']
+		border-radius: 50%
+		&::before
+			content: ""
+			background-color: var(--main-color)
+			position: absolute
+			top: 3px
+			left: 3px
+			border: none
+			width: 8px
+			height: 8px
+			border-radius: inherit
+			transform: scale(0)
+			transition: 0.2s
+		&:checked
+			border-color: var(--main-color)
+			background-color: #fff
+			&::before
+				transform: scale(1)
+
+.main
+	min-height: calc(100vh - 210px) /* 100 vh - height(header + footer) */
+
+.container
+	width: 100%
+	max-width: 1550px
+	padding-right: 15px
+	padding-left: 15px
+	margin-right: auto
+	margin-left: auto
+	border-left: 1px solid green
+	border-right: 1px solid green
+
+.invisible
+	visibility: hidden
+	opacity: 0
+.hidden
+	overflow: hidden
+.title
+	&--primary
+		color: var(--main-color)
+.no-zoom h3
+	font-size: 60px
+
+.new-list
+	list-style: none
+	li
+		&::before
+			content: ""
+			background: url('../img/list-ico.svg') no-repeat center
+			width: 15px
+			height: 18px
+			display: inline-block
+			vertical-align: middel
+			margin: 0 5px
+/*==============================================================
+						BUTTONS START
+/*============================================================= */
+.btn
+	display: inline-flex
+	justify-content: center
+	align-items: center
+	min-width: 200px
+	line-height: 1
+	padding: 20px 40px
+	font-size: 30px
+	font-family: var(--main-font), sans-serif
+	font-weight: 700
+	box-shadow: 0 6px 7px rgba(0, 0, 0, 0.25)
+	transition: 0.2s
+	border-radius: 2px
+	&--white
+		background-color: #fff
+		color: #000
+	&--primary
+		background: #E73834
+		color: #fff
+		font-size: 24px
+		box-shadow: 0px 6px 15px rgba(231, 56, 52, 0.66)
+		border-radius: 4px
+/*==============================================================
+						HEADER START
+/*============================================================= */
+.header
+	&__inner
+		display: flex
+		align-items: center
+		padding: 15px 0
+	&__logo
+		display: block
+		height: 70px
+		margin-right: 135px
+		flex-shrink: 0
+		img
+			width: auto
+			height: 100%
+	&__nav
+		ul
+			display: flex
+			list-style: none
+			li
+				margin-right: 35px
+				a
+					display: block
+					overflow: hidden
+					line-height: 1
+					span
+						position: relative
+						display: inline-block
+						padding: 0 7px
+						font-size: 24px
+						transition: transform 0.3s
+						&::before
+							position: absolute
+							top: 100%
+							content: attr(data-hover)
+							font-weight: 700
+							transform: translate3d(0,0,0)
+					&:hover 
+						span
+							transform: translateY(-100%)
+				&.current
+					a
+						span
+							font-weight: 700
+	&__burger
+		display: none
+		position: relative
+		width: 25px
+		height: 25px
+		background-color: transparent
+		border: 0
+		cursor: pointer
+		font-size: 0
+		transition: 0.2s linear
+		&-inner
+			top: 50%
+			display: block
+			position: absolute
+			width: 25px
+			height: 2px
+			transition: 0.2s transform
+			background-color: #000
+			&:after,
+			&:before
+				content: ""
+				position: absolute
+				left: 0
+				width: inherit
+				height: inherit
+				background-color: #000
+				transition: transform ease 0.15s
+			&:before
+				top: -7px
+			&:after
+				bottom: -7px
+		&.active .header__burger-inner
+			background: none
+			&:before
+				transform: rotate(45deg)
+				top: 0
+			&:after
+				transform: rotate(-45deg)
+				bottom: 0
+
+/*==============================================================
+					SECTION	HEADING START
+/*============================================================= */
+.heading
+	&::after
+		content: ""
+		background: url(../img/heading.png) no-repeat 50% 0
+		position: absolute
+		top: 0
+		z-index: -1
+		height: 1260px
+		width: 100%
+	&__inner
+		height: 1045px
+		display: flex
+		justify-content: flex-end
+		align-items: center
+	&__btn
+		margin-right: 40px
+		margin-top: 120px
+		perspective: 1500px
+		padding: 0
+		box-shadow: 0px 6px 7px rgba(0, 0, 0, 0.25)
+		span
+			position: relative
+			display: inline-block
+			padding: 20px 40px
+			background: #fff
+			color: #000
+			transition: transform 0.3s, color 0.6s
+			transform-origin: 50% 0
+			transform-style: preserve-3d
+			will-change: transform, color
+			&::before
+				position: absolute
+				top: 100%
+				left: 0
+				width: 100%
+				height: 100%
+				background: #fff
+				display: inline-flex
+				justify-content: center
+				align-items: center
+				content: attr(data-hover)
+				transition: background 0.3s
+				transform: rotateX(-90deg)
+				transform-origin: 50% 0
+		&:hover
+			span
+				transform: rotateX(90deg) translateY(-25px)
+				color: var(--main-color)
+
+/*==============================================================
+					SECTION	COMFORT START
+/*============================================================= */
+.comfort
+	position: relative
+	height: 530px
+	&::after
+		content: ""
+		background: url('../img/comfort.png') no-repeat right 30px
+		position: absolute
+		top: 0
+		z-index: -1
+		height: 700px
+		width: 100%
+
+/*==============================================================
+					SECTION	PROFESSIONAL START
+/*============================================================= */
+.proff
+	position: relative
+	&__row
+		display: flex
+		align-items: center
+	&__trip
+		flex: 0 0 50%
+		&-number
+			font-size: 240px
+			font-weight: 700
+			line-height: 1
+			color: var(--main-color)
+		&-text
+			font-size: 58px
+			line-height: 1
+	&__svg
+		flex: 0 0 50%
+		&-mobile
+			display: none
+
+/*==============================================================
+					SECTION	BONUS START
+/*============================================================= */
+.bonus
+	position: relative
+	height: 540px
+	&::after
+		content: ""
+		background: url(../img/road.png) no-repeat 50% 0
+		position: absolute
+		top: 0
+		z-index: -1
+		height: 100%
+		width: 100%
+	&__inner
+		display: flex
+		justify-content: flex-end
+	&__text
+		.title
+			margin-bottom: 10px
+
+
+/*==============================================================
+					PAGE CONTACTS START
+/*============================================================= */
+
+.contacts
+	padding-top: 80px
+	&::after
+		content: ""
+		background: url(../img/contacts.png) no-repeat 100% 100%
+		position: absolute
+		bottom: 0
+		right: 0
+		z-index: -1
+		height: 100%
+		width: 100%
+	&__list
+		margin-top: 50px
+		list-style: none
+		font-size: 36px
+
+/*==============================================================
+					PAGE ORDER START
+/*============================================================= */
+.order
+	background: url('../img/order-bg.svg') no-repeat center 0
+	min-height: 950px
+	&__inner
+		padding-top: 80px
+	&__form
+		max-width: 1000px
+		margin: 0 auto
+		form
+			display: grid
+			grid-template-columns: 1fr
+			grid-row-gap: 40px
+			.btn
+				justify-self: end
+				padding: 15px 42px
+				&:active
+					margin-top: 2px
+	&__fields
+		border: none
+		&--from
+		&--to
+		legend
+			font-size: 36px
+			font-weight: 500
+			margin-bottom: 15px
+	&__inputs
+		display: grid
+		grid-template-columns: 2fr 1fr 1fr
+		grid-gap: 15px 20px
+		label
+			span
+				display: block
+				font-size: 18px
+				line-height: 1.3
+				font-weight: 500
+				user-select: none
+				sup
+					margin-left: -4px
+					color: #E73834
+					vertical-align: middle
+					font-size: inherit
+	&__input
+		&-note
+			grid-row: span 2
+		&-wide
+			grid-column: span 2
+
+
+/*==============================================================
+					PAGE ABOUT START
+/*============================================================= */
+.about
+	min-height: 1200px
+	background: url('../img/about-bg.png') no-repeat center
+	&__inner
+		padding-top: 50px
+		padding-bottom: 50px
+	&__article
+		max-width: 750px
+		margin: 0 auto
+		&-header
+			margin-bottom: 65px
+			figure
+				margin-bottom: 20px
+				img
+					display: block
+					max-width: 355px
+					margin: 0 auto
+			p
+				font-size: 24px
+				font-weight: 700
+				line-height: normal
+				text-align: center
+				color: #000
+				max-width: 610px
+				margin: 0 auto
+
+		&-text
+			color: #000
+			font-size: 18px
+			line-height: normal
+			ul
+				margin: 25px 0
+/*==============================================================
+					FOOTER START
+/*============================================================= */
+.footer
+	padding-bottom: 10px
+	&__inner
+		display: flex
+		align-items: center
+	&__logo
+		display: block
+		height: 73px
+		margin-right: 50px
+		flex-shrink: 0
+		img
+			width: auto
+			height: 100%
+	&__nav
+		ul
+			display: flex
+			list-style: none
+			li
+				margin-right: 35px
+				a
+					display: block
+					overflow: hidden
+					line-height: 1
+					span
+						position: relative
+						display: inline-block
+						padding: 0 7px
+						font-size: 24px
+						transition: transform 0.3s
+						&::before
+							position: absolute
+							top: 100%
+							content: attr(data-hover)
+							font-weight: 700
+							transform: translate3d(0,0,0)
+					&:hover 
+						span
+							transform: translateY(-100%)
+				&.current
+					a
+						span
+							font-weight: 700
+	&__copy
+		font-size: 24px
+		line-height: 1
+
+
+
+@import "media" // Всегда в конце

@@ -10,7 +10,10 @@
 		<meta name="msapplication-navbutton-color" content="#000">
 		<meta name="apple-mobile-web-app-status-bar-style" content="#000">
 		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/autocomplete.css">
 		<link rel="stylesheet" href="css/main.css">
+		<script src="js/autocomplete.js" defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/imask/4.1.5/imask.min.js" defer></script>
 		<script src="js/common.js" defer></script>
 	</head>
 
@@ -37,17 +40,13 @@
 				<div class="container">
 					<div class="order__inner">
 						<div class="order__form">
-							<form action="#">
+							<form action="/api.php" id="order-form">
 								<fieldset class="order__fields order__fields--from">
 									<legend>Откуда ехать:</legend>
 									<div class="order__inputs">
 										<label>
-											<span>Адрес <sup>*</sup></span>
-											<input type="text" name="from-adress" required>
-										</label>
-										<label>
-											<span>Дом <sup>*</sup></span>
-											<input type="text" name="from-house" required>
+											<span>Адрес и дом<sup>*</sup></span>
+											<input type="text" name="from-adress" data-type="adress" >
 										</label>
 										<label>
 											<span>Квартира</span>
@@ -59,12 +58,8 @@
 									<legend>Куда ехать:</legend>
 									<div class="order__inputs">
 										<label>
-											<span>Адрес <sup>*</sup></span>
-											<input type="text" name="to-adress" required>
-										</label>
-										<label>
-											<span>Дом <sup>*</sup></span>
-											<input type="text" name="to-house" required>
+											<span>Адрес и дом<sup>*</sup></span>
+											<input type="text" name="to-adress" data-type="adress" >
 										</label>
 										<label>
 											<span>Квартира</span>
@@ -74,11 +69,11 @@
 											<span>Примечения</span>
 											<textarea name="to-note"></textarea>
 										</label>
-										<label class="order__input-wide">
+										<label>
 											<span>Имя <sup>*</sup></span>
-											<input type="text" name="to-name" required>
+											<input type="text" name="to-name" >
 										</label>
-										<label class="order__input-wide">
+										<label>
 											<span>Телефон <sup>*</sup></span>
 											<input type="text" name="to-tel" required>
 										</label>
@@ -108,5 +103,5 @@
 				<p class="footer__copy">&copy;StyleTaxi</p>
 			</div>
 		</footer>
-	</body>
+</body>
 </html>

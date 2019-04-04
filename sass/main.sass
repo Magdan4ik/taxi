@@ -80,6 +80,7 @@ body
 	font-weight: 300
 	box-shadow: 0 0 3px 3px rgba(200,0,0,0.2)
 	overflow-x: hidden
+	min-height: calc(100vh + 1px)
 	transform-origin: top
 
 a, button
@@ -514,7 +515,7 @@ input
 			margin-bottom: 15px
 	&__inputs
 		display: grid
-		grid-template-columns: 2fr 1fr 1fr
+		grid-template-columns: 2fr 1fr
 		grid-gap: 15px 20px
 		label
 			span
@@ -524,7 +525,6 @@ input
 				font-weight: 500
 				user-select: none
 				sup
-					margin-left: -4px
 					color: #E73834
 					vertical-align: middle
 					font-size: inherit
@@ -570,8 +570,155 @@ input
 			line-height: normal
 			ul
 				margin: 25px 0
+
+/*================= POPOP BOX  =============== */
+.popup-box
+	visibility: hidden
+	opacity: 0
+	position: fixed
+	background-color: rgba(0, 0, 0, 0.8)
+	z-index: 1000
+	left: 0
+	top: 0
+	width: 100vw
+	height: 100vh
+	overflow: auto
+	padding: 15px
+	display: flex
+	justify-content: center
+	align-items: center
+	&[data-visible='true']
+		animation: OpenModal 0.3s both
+		visibility: visible
+		opacity: 1
+	&[data-visible='false']
+		animation: CloseModal 0.3s both
+		visibility: hidden
+		opacity: 0
+	&__close
+		position: absolute
+		right: 5px
+		top: 5px
+		background: none
+		color: #000
+		font-size: 28px
+		line-height: 1
+		padding: 0
+		margin: 0
+		outline: none
+		border: none
+		cursor: pointer
+		z-index: 3
+		&::before
+			content: '\2715'
+	&__content
+		position: relative
+		font-size: 18px
+		width: 100%
+		max-width: 760px
+		max-height: 100%
+		min-height: 360px
+		overflow-y: auto
+		background-color: #fff
+		padding: 50px 30px
+	&__title
+		text-align: center
+		font-size: 36px
+		line-height: 1
+		font-weight: 300
+		margin-bottom: 25px
+	&__actions
+		max-width: 500px
+		margin: 0 auto
+		margin-top: 20px
+		display: flex
+		justify-content: space-between
+		.btn
+			padding: 15px 47px
+	&__btn
+		&-cancel
+			font-weight: 300
+			border: none
+			color: #909090
+			box-shadow: none
+			span
+				font-size: 24px
+				border-bottom: 1px solid #909090
+		&-accept
+			&:active
+				span
+					margin-top: 2px
+
+	&__body
+		max-width: 600px
+		margin: 0 auto
+	&__code
+		max-width: 240px
+		margin: 0 auto
+		margin-bottom: 40px
+		text-align: center
+		font-size: 18px
+		p
+			line-height: 1.2
+			b
+				color: #E73834
+				font-size: 36px
+				font-weight: 700
+	&__timer
+		margin-top: 60px
+	&__found
+		text-align: center
+		&-txt
+			margin-bottom: 45px
+			p
+		&-btn
+			min-width: 135px
+			padding: 15px
+	&__notfound
+		text-align: center
+		&-img
+			max-width: 135px
+			margin: 0 auto
+			margin-bottom: 15px
+		&-later
+			font-size: 18px
+			font-family: 'Gilroy', sans-serif
+			line-height: normal
+			text-align: center
+			text-decoration-line: underline
+
+/*================= COUNTDOWN  =============== */
+.countdown
+	position: relative
+	margin: auto
+	height: 140px
+	width: 140px
+	display: flex
+	justify-content: center
+	align-items: center
+	text-align: center
+	&__number
+		color: #000
+		font-size: 64px
+		font-weight: 900
+		display: inline-block
+	svg
+		position: absolute
+		top: 0
+		right: 0
+		width: 100%
+		height: 100%
+		transform: rotateY(-180deg) rotateZ(-90deg)
+		circle
+			stroke-dasharray: 407px
+			stroke-dashoffset: 0px
+			stroke-linecap: round
+			stroke-width: 8px
+			stroke: #E73834
+			fill: none
+			animation: countdown 60s linear infinite forwards
 /*==============================================================
-					FOOTER START
+				FOOTER START
 /*============================================================= */
 .footer
 	padding-bottom: 10px
@@ -620,5 +767,10 @@ input
 		line-height: 1
 
 
+@keyframes countdown
+	from
+		stroke-dashoffset: 0px
+	to
+		stroke-dashoffset: 407px
 
 @import "media" // Всегда в конце

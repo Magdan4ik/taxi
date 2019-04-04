@@ -773,4 +773,25 @@ input
 	to
 		stroke-dashoffset: 407px
 
+
+@keyframes OpenModal
+	from
+		transform: scale(1.1)
+		opacity: 0
+	to
+		transform: scale(1)
+		opacity: 1
+
+@keyframes CloseModal
+	from
+		visibility: visible
+		transform: scale(1)
+		opacity: 1
+	to
+		transform: scale(1.1)
+		opacity: 0
+		visibility: hidden
+
+
+
 @import "media" // Всегда в конце

@@ -80,7 +80,10 @@ function allScripts(w, d) {
 				options : {
 					mask: '{38}0000000000'
 				}
-			}
+			},
+			from : d.querySelector('input[name="from-adress"]'),
+			to   : d.querySelector('input[name="to-adress"]'),
+			name : d.querySelector('input[name="to-name"]')
 		}
 		const formComplete = {
 			tel: false
@@ -230,20 +233,22 @@ function searhTaxi(popBody) {
 
 	/* INSERT FETCH HERE !!!!!!!!!!!!!! */
 	/* + TAXI FOUNDED */
-	timer();
+	timer(popBody);
 
 };
 
 
-function timer() {
+function timer(popBody) {
 	let cdNum = document.getElementById('countdown-number');
-	let cdown = 60;
+	let circle = document.querySelector('.countdown circle');
+	let cdown = 10;
 	cdNum.textContent = cdown;
 	let interval = setInterval(() => {
 		cdown = --cdown;
 		cdNum.textContent = cdown;
 		if(cdown <= 0) {
 			clearInterval(interval);
+			circle.style.webkitAnimationPlayState = 'paused';
 			notFoundTaxi(popBody);
 		}
 	}, 1000);

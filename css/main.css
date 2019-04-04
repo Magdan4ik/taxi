@@ -898,10 +898,6 @@ input[type='radio']:checked::before {
   border-bottom: 1px solid #909090;
 }
 
-.popup-box__btn-accept:active span {
-  margin-top: 2px;
-}
-
 .popup-box__body {
   max-width: 600px;
   margin: 0 auto;
@@ -1402,5 +1398,19 @@ input[type='radio']:checked::before {
   }
   .about__article-text ul {
     margin: 15px 0;
+  }
+  .popup-box__content {
+    min-height: 330px;
+    padding: 30px 15px;
+  }
+  .popup-box__title {
+    font-size: 24px;
+  }
+  .popup-box__actions .btn {
+    padding: 15px 10px;
+    min-width: 135px;
+  }
+  .popup-box__btn-cancel span {
+    font-size: 20px;
   }
 }

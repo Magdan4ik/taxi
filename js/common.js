@@ -97,10 +97,10 @@ function allScripts(w, d) {
 			new autoComplete({
 				selector: input,
 				minChars: 5,
-				delay: 1000,
-				offsetLeft: -61,
-				offsetTop: -7,
-				source: function(term, response){
+				delay: 700,
+				// offsetLeft: -61,
+				offsetTop: -4,
+				source: function(term, response) {
 					fetch(`http://cors-anywhere.herokuapp.com/http://credit.oscorp.pro/api.php?address=${term}`, {
 						method: "GET"
 					})
@@ -138,6 +138,7 @@ function allScripts(w, d) {
 function makeOrder(inputs, complete) {
 	let popup = document.getElementById('popOrder');
 	let phone = inputs.tel.input.value;
+	let code  = confirmedNumber(phone);
 	if(complete.tel) {
 		if(!popup) { /* Create popup if not exist */
 			let ppup = document.createElement('div');
@@ -153,8 +154,8 @@ function makeOrder(inputs, complete) {
 		}
 		popup.dataset.visible = true; /* Open popup */
 		let popBody = popup.querySelector('.popup-box__body');
-		if(confirmedNumber(phone)) {
-			searhTaxi(popBody);
+		if(code) {
+			searhTaxi(popBody, code, phone);
 		} else {
 			сonfirmNumber(popBody, phone);
 		}
@@ -170,22 +171,21 @@ function makeOrder(inputs, complete) {
 function acceptSMS(btn, phone) {
 	const sms = document.getElementById('i-sms');
 	let   smsValue = sms.value.trim();
+	let   popBody  =  document.querySelector('#popOrder .popup-box__body');
 
-	btn.addEventListener('click', () => {
-		fetch(`http://cors-anywhere.herokuapp.com/http://credit.oscorp.pro/api.php?register_phone=${phone}&check_code=${smsValue}`, {
-			method: "GET"
-		})
-		.then(res => res.json())
-		.then(res =>  {
-			if(res.check_code.status == 1) {
-				savePhones(phone, smsValue);
-				searhTaxi(document.querySelector('#popOrder .popup-box__body'));
-			} else {
-				alert('Неверный код');
-			}
-		})
-		.catch(err => alert('Ошибка запроса. Попробуйте позже!'));
+	fetch(`http://cors-anywhere.herokuapp.com/http://credit.oscorp.pro/api.php?register_phone=${phone}&check_code=${smsValue}`, {
+		method: "GET"
 	})
+	.then(res => res.json())
+	.then(res =>  {
+		if(res.check_code.status == 1) {
+			savePhones(phone, smsValue);
+			searhTaxi(popBody, smsValue, phone);
+		} else {
+			alert('Неверный код');
+		}
+	})
+	.catch(err => alert('Ошибка запроса. Попробуйте позже!'));
 };
 
 
@@ -196,15 +196,17 @@ function savePhones(phone, code) {
 
 
 function confirmedNumber(phone) {
-	let phones = JSON.parse(localStorage.phones);
-	if (phone in phones) {
-		return true;
-	}
+	if(localStorage.phones) {
+		let phones = JSON.parse(localStorage.phones);
+		for(let k in phones) {
+			if(k == phone) return phones[k]; //возвращаем код если есть номер в loc.storage
+		}
+	};
 	return false;
 };
 
 
-function searhTaxi(popBody) {
+function searhTaxi(popBody, code, phone) {
 	popBody.innerHTML = `
 	<div class="popup-box__title">Поиск авто</div>
 		<div class="popup-box__timer">
@@ -216,18 +218,16 @@ function searhTaxi(popBody) {
 			</div>
 		</div>
 	`;
-	searchTimer(popBody, 60);
+	searchTimer(popBody, code, phone);
 };
 
-function searchTimer(popBody, time) {
+function searchTimer(popBody, code, phone) {
+	console.log(code);
+	console.log(phone);
+	let time = 60;
 	let cdNum = document.getElementById('countdown-number');
 	let circle = document.querySelector('.countdown circle');
 	cdNum.textContent = time;
-
-	/* INSERT FETCH HERE.
-	// If ok - insert func foundTaxi(popBody) */
-	// if no - insert funct notFoundTaxi(popBody);
-
 	let interval = setInterval(() => {
 		time = --time;
 		cdNum.textContent = time;
@@ -237,7 +237,21 @@ function searchTimer(popBody, time) {
 			notFoundTaxi(popBody);
 		}
 	}, 1000);
-}
+
+	fetch(`http://cors-anywhere.herokuapp.com/http://credit.oscorp.pro/api.php?order=${order}&check_code=${code}&register_phone=${phone}`, {
+		method: "GET"
+	})
+	.then(res => res.text())
+	.then(html => {
+		if(html) { // Если найдено такси (поменять условие)
+			foundTaxi(popBody, html); //передаем html найденного такси
+		} else {
+			notFoundTaxi(popBody)
+		}
+	})
+	.catch(err => alert('Ошибка отправки смс. Попробуйте позже!'));
+};
+
 
 function сonfirmNumber(popBody, phone) {
 	popBody.innerHTML = `
@@ -251,10 +265,10 @@ function сonfirmNumber(popBody, phone) {
 				<button type="button" class="btn btn--primary popup-box__btn-accept" onclick="acceptSMS(this, ${phone})"><span>Подтвердить</span></button>
 			</div>
 		`;
-	// fetch(`http://cors-anywhere.herokuapp.com/http://credit.oscorp.pro/api.php?register_phone=${phone}`, {
-	// 	method: "GET"
-	// })
-	// .catch(err => alert('Ошибка отправки смс. Попробуйте позже!'));
+	fetch(`http://cors-anywhere.herokuapp.com/http://credit.oscorp.pro/api.php?register_phone=${phone}`, {
+		method: "GET"
+	})
+	.catch(err => alert('Ошибка отправки смс. Попробуйте позже!'));
 };
 
 function notFoundTaxi(popBody) {
@@ -267,12 +281,12 @@ function notFoundTaxi(popBody) {
 	`;
 };
 
-function foundTaxi(popBody) {
+function foundTaxi(popBody, html) {
 	popBody.innerHTML = `
 	<div class="popup-box__title">Ваш автомобиль</div>
 		<div class="popup-box__found">
 			<div class="popup-box__found-txt">
-				<p>Сірий Volkswagen Golf</p>
+				${html}
 			</div>
 			<button class="btn btn--primary" type="button" onclick="document.querySelector('#popOrder').dataset.visible = false;">Ок</button>
 		</div>
